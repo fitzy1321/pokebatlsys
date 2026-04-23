@@ -1,5 +1,8 @@
 **/build
-build/**
+**build/**
 **/*.out
 **/*.o
 **/*.so
+
+**/*.venv
+**/*.env

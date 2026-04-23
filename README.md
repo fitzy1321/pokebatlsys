@@ -49,3 +49,7 @@ I'll probably go with gen 1 - 3, since that's what I played, and I'm not trying 
   - try to run
 
 How does this data get saved per pokemon, and per instance in a user's roaster? And per opponent pokemon list?
+
+## Data
+
+Gen 1 pokemon data source: <https://www.kaggle.com/datasets/dizzypanda/gen-1-pokemon?resource=download/>

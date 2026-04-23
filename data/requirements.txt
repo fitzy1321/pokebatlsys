@@ -1,0 +1,4 @@
+marimo==0.23.2
+polars==1.40.1
+ruff==0.15.11
+requests==2.33.1
