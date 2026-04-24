@@ -1,6 +1,15 @@
+# /// script
+# requires-python = ">=3.14"
+# dependencies = [
+#     "marimo>=0.23.3",
+#     "polars==1.40.1",
+#     "requests==2.33.1",
+# ]
+# ///
+
 import marimo
 
-__generated_with = "0.23.2"
+__generated_with = "0.23.3"
 app = marimo.App(width="medium")
 
 
@@ -8,7 +17,7 @@ app = marimo.App(width="medium")
 def _():
     import polars as pl
 
-    df = pl.read_csv("FirstGenPokemon.csv")
+    df = pl.read_csv("data/FirstGenPokemon.csv")
 
     df
     return

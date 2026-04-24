@@ -2,7 +2,7 @@ import csv
 import os
 import time
 
-import requests
+import requests  # pip install requests
 
 
 def fetch(url, retries=3):
@@ -53,7 +53,7 @@ if __name__ == "__main__":
         3: range(252, 387),  # Treecko   → Deoxys
     }
     FIELDS = ["id", "name", "type1", "type2", "hp", "atk", "def", "spa", "spd", "spe"]
-    OUT = "data"
+    OUT = "."
     os.makedirs(OUT, exist_ok=True)
 
     print("Fetching data from pokeapi\n\n")
