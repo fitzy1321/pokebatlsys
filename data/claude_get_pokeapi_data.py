@@ -5,33 +5,31 @@ import time
 import requests  # pip install requests
 
 
-def fetch(url, retries=3):
-    for i in range(retries):
-        try:
-            r = requests.get(url, timeout=10)
-            r.raise_for_status()
-            return r.json()
-        except Exception:
-            if i == retries - 1:
-                raise
-            time.sleep(1)
-
-
-def fetch_gen(gen, id_range, writer):
+def fetch_gen(gen, id_range, writer, retries=3):
     print(f"\n── Gen {gen} ──────────────────")
     for pid in id_range:
-        p = fetch(f"https://pokeapi.co/api/v2/pokemon/{pid}")
+        for i in range(retries):
+            try:
+                r = requests.get(f"https://pokeapi.co/api/v2/pokemon/{pid}", timeout=10)
+                r.raise_for_status()
+                payload = r.json()
+                break
+            except Exception:
+                if i == retries - 1:
+                    raise
 
-        stats = {s["stat"]["name"]: s["base_stat"] for s in p["stats"]}  # type: ignore
+            time.sleep(1)
+
+        stats = {s["stat"]["name"]: s["base_stat"] for s in payload["stats"]}  # type: ignore
         types = [
             t["type"]["name"].capitalize()
-            for t in sorted(p["types"], key=lambda t: t["slot"])  # type: ignore
+            for t in sorted(payload["types"], key=lambda t: t["slot"])  # type: ignore
         ]
 
         writer.writerow(
             {
                 "id": pid,
-                "name": p["name"].capitalize(),  # type: ignore
+                "name": payload["name"].capitalize(),  # type: ignore
                 "type1": types[0],
                 "type2": types[1] if len(types) > 1 else "",
                 "hp": stats["hp"],
@@ -42,7 +40,7 @@ def fetch_gen(gen, id_range, writer):
                 "spe": stats["speed"],
             }
         )
-        print(f"  #{pid:03d} {p['name'].capitalize()}")  # type: ignore
+        print(f"  #{pid:03d} {payload['name'].capitalize()}")  # type: ignore
         time.sleep(0.1)  # be polite to the API
 
 
