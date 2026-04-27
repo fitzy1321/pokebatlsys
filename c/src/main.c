@@ -1,5 +1,19 @@
 #include <stdio.h>
 
+typedef struct {
+    void *items;
+    size_t length;
+    size_t capacity;
+} array_t;
+
+void array_bounds_check(array_t array, size_t index) {
+    if (index >= 0 && index < array.length) { // always less, not less or equal
+        return array.items[index];
+    }
+
+    return;
+}
+
 // Gen 1 Type Enum (matches internal game values)
 typedef enum {
     NORMAL   = 0x00,

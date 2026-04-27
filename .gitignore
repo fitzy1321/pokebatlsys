@@ -4,5 +4,7 @@
 **/*.o
 **/*.so
 
-**/*.venv
 **/*.env
+**/*.venv
+**/*.ruff_cache
+**/__pycache__
