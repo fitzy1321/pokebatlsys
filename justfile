@@ -2,7 +2,7 @@ default:
     @just --list
 
 open-marimo:
-    marimo edit --sandbox data/first_gen_marimo_notebook.py --watch
+    marimo edit --sandbox data/pokedata_notebook.py --watch
 
 compile-c:
     @mkdir -p c/build

@@ -9,7 +9,7 @@
 
 import marimo
 
-__generated_with = "0.23.3"
+__generated_with = "0.23.4"
 app = marimo.App(width="full")
 
 
@@ -48,7 +48,18 @@ def _(mo):
 
 
 @app.cell
-def _(requests):
+def _(mo):
+    # Create a run button
+    run_button = mo.ui.run_button()
+    run_button
+    return (run_button,)
+
+
+@app.cell
+def _(mo, requests, run_button):
+    # Stop execution if the button hasn't been clicked
+    mo.stop(not run_button.value, mo.md("Click 👆 to run this cell"))
+
     r = requests.get("https://pokeapi.co/api/v2/pokemon/1")
     if not r.ok:
         print(f"Error fetching pokemon: {r.status_code} {r.raw}")
