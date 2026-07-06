@@ -116,10 +116,8 @@ void pokedex_list_plane(struct notcurses *nc, struct ncplane *std, Pokemon *dex,
 
     struct ncinput ni;
     while (notcurses_get_blocking(nc, &ni) != (uint32_t)-1) {
-
+        // TODO:
     }
-
-
 }
 
 int main(void) {
@@ -172,8 +170,6 @@ int main(void) {
     // Wait for key press
     ncinput ninput;
     notcurses_get_blocking(nc, &ninput);
-
-
 
     // clear screen and return to terminal
     notcurses_stop(nc);

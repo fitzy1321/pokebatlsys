@@ -201,6 +201,7 @@ def fetch_gen1_data() -> list[dict]:
         print("    Fetching moves...")
         moves = _get_moves(pokemon_data)
 
+        growth_rate: str | None = None
         species_data: dict = {}
         next_evolutions: list[dict] = []
         if species_url := pokemon_data.get("species", {}).get("url"):
@@ -208,6 +209,7 @@ def fetch_gen1_data() -> list[dict]:
             species_data = _fetch(species_url)
             if species_data:
                 next_evolutions = _get_next_evolutions(species_data, name)
+                growth_rate = species_data.get("growth_rate", {}).get("name")
 
         print("    Fetching sprite PNGs...")
         front_sprite, back_sprite = _get_sprites(pokemon_id)
@@ -228,7 +230,7 @@ def fetch_gen1_data() -> list[dict]:
                 },
                 "moves": moves,
                 "next_evolutions": next_evolutions,
-                "growth_rate": species_data.get("growth_rate", {}).get("name"),
+                "growth_rate": growth_rate,
                 "front_sprite": front_sprite,
                 "back_sprite": back_sprite,
             }

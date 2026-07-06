@@ -10,7 +10,7 @@
 
 import marimo
 
-__generated_with = "0.23.10"
+__generated_with = "0.23.13"
 app = marimo.App(width="columns")
 
 
@@ -83,23 +83,23 @@ def _(mo, poke_run_btn, requests_pokeapi):
 
 
 @app.cell
-def _(mo, poke_run_btn, requests_get):
-    mo.stop(not poke_run_btn.value, "idk? my bff j?")
-    poke_sprites = {
-        i: (
-            mo.image(
-                requests_get(
-                    f"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/transparent/{i}.png"
-                ).content
-            ),
-            mo.image(
-                requests_get(
-                    f"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/transparent/back/{i}.png"
-                ).content
-            ),
-        )
-        for i in range(1, 7)
-    }
+def _(mo):
+    # mo.stop(not poke_run_btn.value, "idk? my bff j?")
+    # poke_sprites = {
+    #     i: (
+    #         mo.image(
+    #             requests_get(
+    #                 f"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/transparent/{i}.png"
+    #             ).content
+    #         ),
+    #         mo.image(
+    #             requests_get(
+    #                 f"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/transparent/back/{i}.png"
+    #             ).content
+    #         ),
+    #     )
+    #     for i in range(1, 7)
+    # }
     # for i in range(1, 6):
     #     png_resp = requests_get(
     #         f"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-i/red-blue/transparent/{i}.png"
@@ -127,7 +127,10 @@ def _(mo, poke_run_btn, requests_get):
     #     for i in range(0, POKE_ID_MAX)
     # ]
 
-    poke_sprites
+    # poke_sprites
+    mo.md("""
+    idk? my bff j?
+    """)
     return
 
 
@@ -166,7 +169,7 @@ def utils():
 
         return resp.json()
 
-    return Path, mo, pickle, requests_get, requests_pokeapi
+    return Path, mo, pickle, requests_pokeapi
 
 
 if __name__ == "__main__":
